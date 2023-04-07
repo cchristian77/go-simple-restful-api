@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"database/sql"
+	"github.com/go-playground/validator/v10"
 	"go-simple-restful-api/helper"
 	"go-simple-restful-api/model/domain"
 	"go-simple-restful-api/model/web"
@@ -12,9 +13,14 @@ import (
 type CategoryServiceImpl struct {
 	CategoryRepository repository.CategoryRepository // requires repository to manipulate data
 	DB                 *sql.DB
+	validate           *validator.Validate
 }
 
 func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
+	// validation
+	err := service.validate.Struct(request)
+	helper.PanicIfError(err)
+
 	tx, err := service.DB.Begin() // begin transaction
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
@@ -29,6 +35,9 @@ func (service *CategoryServiceImpl) Create(ctx context.Context, request web.Cate
 }
 
 func (service *CategoryServiceImpl) Update(ctx context.Context, request web.CategoryUpdateRequest) web.CategoryResponse {
+	err := service.validate.Struct(request)
+	helper.PanicIfError(err)
+
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
