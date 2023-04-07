@@ -11,8 +11,21 @@ Content-Type: application/json
   "name" : "Computer"
 }
 
+### Create new category VALIDATOR ERROR
+POST http://localhost:3000/api/categories
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : ""
+}
+
 ### Get Category by Id
 GET http://localhost:3000/api/categories/2
+Accept: application/json
+
+### Get Category by Id NOT FOUND
+GET http://localhost:3000/api/categories/999
 Accept: application/json
 
 ### Update Category by Id
