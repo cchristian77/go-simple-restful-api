@@ -13,6 +13,16 @@ type CategoryControllerImpl struct {
 	CategoryService service.CategoryService // because category service is interface, no need to set to pointer
 }
 
+// function to exposed category controller
+// similar to polymorphism concept
+
+func NewCategoryController(categoryService service.CategoryService) CategoryController {
+	// return implentation struct instead of interface
+	return &CategoryControllerImpl{
+		CategoryService: categoryService,
+	}
+}
+
 // implementation of category controller contract
 
 func (controller *CategoryControllerImpl) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
