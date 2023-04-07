@@ -13,7 +13,7 @@ import (
 type CategoryServiceImpl struct {
 	CategoryRepository repository.CategoryRepository // requires repository to manipulate data
 	DB                 *sql.DB
-	validate           *validator.Validate
+	Validate           *validator.Validate
 }
 
 // constructor function
@@ -21,13 +21,13 @@ func NewCategoryService(categoryRepository repository.CategoryRepository, DB *sq
 	return &CategoryServiceImpl{
 		CategoryRepository: categoryRepository,
 		DB:                 DB,
-		validate:           validate,
+		Validate:           validate,
 	}
 }
 
 func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
 	// validation
-	err := service.validate.Struct(request)
+	err := service.Validate.Struct(request)
 	helper.PanicIfError(err)
 
 	tx, err := service.DB.Begin() // begin transaction
@@ -44,7 +44,7 @@ func (service *CategoryServiceImpl) Create(ctx context.Context, request web.Cate
 }
 
 func (service *CategoryServiceImpl) Update(ctx context.Context, request web.CategoryUpdateRequest) web.CategoryResponse {
-	err := service.validate.Struct(request)
+	err := service.Validate.Struct(request)
 	helper.PanicIfError(err)
 
 	tx, err := service.DB.Begin()

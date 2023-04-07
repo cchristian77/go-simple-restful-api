@@ -47,6 +47,7 @@ func (controller *CategoryControllerImpl) Update(writer http.ResponseWriter, req
 	categoryId := params.ByName("categoryId") // returns string data type
 	id, err := strconv.Atoi(categoryId)       // convert string to integer
 	helper.PanicIfError(err)
+
 	categoryUpdateRequest.Id = id
 
 	categoryResponse := controller.CategoryService.Update(request.Context(), categoryUpdateRequest)
