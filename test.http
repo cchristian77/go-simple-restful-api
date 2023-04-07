@@ -1,9 +1,11 @@
 ### Get all cateogries
 GET http://localhost:3000/api/categories
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 
 ### Create new category
 POST http://localhost:3000/api/categories
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 Content-Type: application/json
 
@@ -13,6 +15,7 @@ Content-Type: application/json
 
 ### Create new category VALIDATOR ERROR
 POST http://localhost:3000/api/categories
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 Content-Type: application/json
 
@@ -20,16 +23,28 @@ Content-Type: application/json
   "name" : ""
 }
 
+### Create new category UNAUTHORIZED
+POST http://localhost:3000/api/categories
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : "Computer"
+}
+
 ### Get Category by Id
 GET http://localhost:3000/api/categories/2
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 
 ### Get Category by Id NOT FOUND
 GET http://localhost:3000/api/categories/999
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 
 ### Update Category by Id
 PUT http://localhost:3000/api/categories/2
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 Content-Type: application/json
 
@@ -39,5 +54,6 @@ Content-Type: application/json
 
 ### Delete Category by Id
 DELETE http://localhost:3000/api/categories/3
+X-API-KEY: AUTH-SECRET
 Accept: application/json
 Content-Type: application/json
