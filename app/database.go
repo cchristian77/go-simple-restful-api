@@ -6,6 +6,13 @@ import (
 	"time"
 )
 
+/*
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL
+) ENGINE = innoDB;
+*/
+
 func NewDB() *sql.DB {
 	// username : root
 	// password : password
