@@ -8,8 +8,11 @@ package simple_google_wire
 
 // Injectors from injector.go:
 
-func InitializedService() *SimpleService {
+func InitializedService() (*SimpleService, error) {
 	simpleRepository := NewSimpleRepository()
-	simpleService := NewSimpleService(simpleRepository)
-	return simpleService
+	simpleService, err := NewSimpleService(simpleRepository)
+	if err != nil {
+		return nil, err
+	}
+	return simpleService, nil
 }

@@ -20,10 +20,10 @@ Or cd to directory then run command : wire
 
 */
 
-func InitializedService() *SimpleService {
+func InitializedService() (*SimpleService, error) {
 	// inform functions that used as the providers (to create dependency injection)
 	wire.Build(
 		NewSimpleRepository, NewSimpleService,
 	)
-	return nil
+	return nil, nil
 }
