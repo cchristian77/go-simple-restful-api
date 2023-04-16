@@ -17,8 +17,11 @@ type SimpleRepository struct {
 }
 
 // provider (constructor) function
-func NewSimpleRepository() *SimpleRepository {
-	return &SimpleRepository{}
+// pass parameter (signature) isError to provider function
+func NewSimpleRepository(isError bool) *SimpleRepository {
+	return &SimpleRepository{
+		Error: isError,
+	}
 }
 
 // SimpleService requires (depends) SimpleRepository

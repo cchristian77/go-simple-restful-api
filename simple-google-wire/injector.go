@@ -18,9 +18,11 @@ Example : wire gen cchristian77/go-simple-restful-api/simple_google_wire or wire
 
 Or cd to directory then run command : wire
 
+Injector Signature
+in Google Wire, we can send parameters to the injector that will be generated automatically.
 */
 
-func InitializedService() (*SimpleService, error) {
+func InitializedService(isError bool) (*SimpleService, error) {
 	// inform functions that used as the providers (to create dependency injection)
 	wire.Build(
 		NewSimpleRepository, NewSimpleService,
