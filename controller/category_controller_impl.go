@@ -17,7 +17,7 @@ type CategoryControllerImpl struct {
 // similar to polymorphism concept
 
 func NewCategoryController(categoryService service.CategoryService) CategoryController {
-	// return implentation struct instead of interface
+	// return implementation struct instead of interface
 	return &CategoryControllerImpl{
 		CategoryService: categoryService,
 	}
